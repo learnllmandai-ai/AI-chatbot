@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1e5948" />
+    <meta
+      name="description"
+      content="Set up Morrow, your private AI assistant. Sign in or continue on this device."
+    />
+    <title>Get started with Morrow</title>
+    <link rel="stylesheet" href="/onboarding.css" />
+    <script src="/onboarding.js" defer></script>
+  </head>
+  <body>
+    <main class="onboarding-shell">
+      <aside class="intro-panel">
+        <a class="brand" href="/" aria-label="Morrow home">
+          <span class="brand-mark" aria-hidden="true">m.</span>
+          <span>Morrow</span>
+        </a>
+        <div class="intro-copy">
+          <p class="eyebrow"><span></span>GETTING STARTED</p>
+          <h1>A helpful place<br />to start.</h1>
+          <p>
+            Ask questions, work through ideas, and get help with everyday tasks,
+            all in one private workspace.
+          </p>
+        </div>
+        <div class="intro-landscape" aria-hidden="true">
+          <span class="landscape-sun"></span>
+          <span class="landscape-hill landscape-hill-back"></span>
+          <span class="landscape-hill landscape-hill-front"></span>
+          <span class="landscape-stem"></span>
+          <span class="landscape-leaf landscape-leaf-left"></span>
+          <span class="landscape-leaf landscape-leaf-right"></span>
+        </div>
+        <p class="intro-footnote">Your chats stay in this browser.</p>
+      </aside>
+
+      <section class="setup-panel" aria-labelledby="setup-title">
+        <div class="setup-content">
+          <p class="step-label">YOUR ACCOUNT</p>
+          <h2 id="setup-title">Choose how to continue</h2>
+          <p class="setup-description">
+            Sign in to identify this workspace, or continue without an account.
+            Sign-in does not give Morrow access to your email or calendar.
+          </p>
+
+          <div class="provider-options" aria-label="Sign-in options">
+            <button
+              class="provider-button"
+              id="google-sign-in"
+              type="button"
+              disabled
+            >
+              <span class="google-mark" aria-hidden="true">G</span>
+              <span>Continue with Google</span>
+              <span class="provider-arrow" aria-hidden="true">&#8599;</span>
+            </button>
+            <button
+              class="provider-button"
+              id="microsoft-sign-in"
+              type="button"
+              disabled
+            >
+              <span class="microsoft-mark" aria-hidden="true"
+                ><i></i><i></i><i></i><i></i
+              ></span>
+              <span>Continue with Microsoft</span>
+              <span class="provider-arrow" aria-hidden="true">&#8599;</span>
+            </button>
+          </div>
+
+          <p
+            class="connection-status"
+            id="connection-status"
+            role="status"
+            aria-live="polite"
+          >
+            Checking sign-in setup...
+          </p>
+
+          <section
+            class="setup-instructions"
+            id="setup-instructions"
+            hidden
+            aria-labelledby="setup-instructions-title"
+          >
+            <h3 id="setup-instructions-title">
+              To enable Google or Microsoft sign-in
+            </h3>
+            <ol>
+              <li>
+                Create an OAuth app with the provider and add its callback URL.
+              </li>
+              <li>
+                Set the client ID, client secret, and a session secret on this
+                computer.
+              </li>
+              <li>Restart Morrow. The sign-in buttons will then be enabled.</li>
+            </ol>
+            <p class="callback-label">Callback URLs for this server</p>
+            <code id="google-callback">Google: loading...</code>
+            <code id="microsoft-callback">Microsoft: loading...</code>
+            <a
+              class="setup-link"
+              href="/README.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              >View the full setup steps</a
+            >
+          </section>
+
+          <div class="signed-in-panel" id="signed-in-panel" hidden>
+            <span class="signed-in-check" aria-hidden="true">&#10003;</span>
+            <p id="signed-in-label">Account connected</p>
+          </div>
+          <p class="auth-message" id="auth-message" role="alert" hidden></p>
+
+          <button class="continue-button" id="continue-button" type="button">
+            Continue without signing in <span aria-hidden="true">&#8594;</span>
+          </button>
+          <p class="privacy-copy">
+            Google/Microsoft sign-in only confirms your identity. Your chat
+            history remains on this device and is not synced.
+          </p>
+
+          <div class="ai-setup-note">
+            <span class="note-icon" aria-hidden="true">i</span>
+            <p>
+              <strong>One more setup for AI replies.</strong> Sign-in and AI
+              access are separate. To generate replies, add an OpenAI API key as
+              described in the setup guide.
+            </p>
+          </div>
+        </div>
+        <footer class="setup-footer">
+          <span>Private by default</span><span>Optional sign-in</span>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

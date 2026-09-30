@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f5ef" />
+    <meta
+      name="description"
+      content="A thoughtful, private AI workspace for questions, ideas, and everyday work."
+    />
+    <title>Morrow — Your AI assistant</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="sidebar-scrim" id="sidebar-scrim"></div>
+      <aside class="sidebar" id="sidebar" aria-label="Conversation sidebar">
+        <div class="brand-row">
+          <a class="brand" href="/" aria-label="Morrow home"
+            ><span class="brand-mark" aria-hidden="true">m.</span
+            ><span>Morrow</span></a
+          ><button
+            class="icon-button sidebar-close"
+            id="sidebar-close"
+            type="button"
+            aria-label="Close sidebar"
+            title="Close sidebar"
+          ></button>
+        </div>
+        <button class="new-chat-button" id="new-chat" type="button">
+          <span class="plus-icon" aria-hidden="true"></span
+          ><span>New conversation</span><kbd>Ctrl K</kbd>
+        </button>
+        <label class="search-box"
+          ><span class="search-icon" aria-hidden="true"></span
+          ><input
+            id="conversation-search"
+            type="search"
+            placeholder="Search conversations"
+            autocomplete="off"
+            aria-label="Search conversations"
+          /><kbd>/</kbd></label
+        >
+        <div class="conversation-section">
+          <div class="section-heading">
+            <span>Recent</span
+            ><span class="conversation-count" id="conversation-count">0</span>
+          </div>
+          <nav
+            class="conversation-list"
+            id="conversation-list"
+            aria-label="Recent conversations"
+          ></nav>
+          <p class="empty-search" id="empty-search" hidden>
+            No matching conversations.
+          </p>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="privacy-note">
+            <span class="privacy-dot" aria-hidden="true"></span
+            ><span>Your conversations stay on this device</span>
+          </div>
+          <button class="account-button" id="open-settings" type="button">
+            <span class="avatar" aria-hidden="true">M</span
+            ><span class="account-copy"
+              ><strong>Your workspace</strong
+              ><small>Personal settings</small></span
+            ><span class="settings-icon" aria-hidden="true">⚙</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="topbar-leading">
+            <button
+              class="icon-button menu-toggle"
+              id="menu-toggle"
+              type="button"
+              aria-label="Open sidebar"
+              aria-expanded="false"
+              title="Open sidebar"
+            ></button>
+            <div class="chat-heading">
+              <span class="chat-heading-label">WORKSPACE</span>
+              <h1 id="chat-title">A fresh start</h1>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <div class="connection-status" id="connection-status" role="status">
+              <span class="status-dot"></span
+              ><span id="connection-label">Connecting</span>
+            </div>
+            <button
+              class="icon-button more-button"
+              id="chat-menu-toggle"
+              type="button"
+              aria-label="Conversation actions"
+              title="Conversation actions"
+            ></button>
+            <div class="chat-menu" id="chat-menu" hidden>
+              <button type="button" id="rename-chat">
+                <span aria-hidden="true">✎</span>Rename conversation</button
+              ><button type="button" id="clear-chat">
+                <span aria-hidden="true">⌫</span>Clear messages</button
+              ><button class="delete-action" type="button" id="delete-chat">
+                <span aria-hidden="true">▤</span>Delete conversation
+              </button>
+            </div>
+          </div>
+        </header>
+        <section
+          class="conversation-view"
+          id="conversation-view"
+          aria-label="Conversation"
+          aria-live="polite"
+        >
+          <div class="welcome-screen" id="welcome-screen">
+            <div class="welcome-art" aria-hidden="true">
+              <span class="art-sun"></span
+              ><span class="art-hill art-hill-back"></span
+              ><span class="art-hill art-hill-front"></span
+              ><span class="art-stem"></span
+              ><span class="art-leaf art-leaf-left"></span
+              ><span class="art-leaf art-leaf-right"></span>
+            </div>
+            <p class="eyebrow">
+              <span class="eyebrow-rule"></span>Your AI assistant
+            </p>
+            <h2>
+              How can I help<br />you today<span class="title-period">?</span>
+            </h2>
+            <p class="welcome-copy">
+              Ask a question, explore an idea, or get help with a task. Morrow
+              can help you write, learn, plan, and solve problems.
+            </p>
+            <div class="prompt-grid" aria-label="Try asking">
+              <button
+                class="prompt-card prompt-green"
+                data-prompt="Explain a difficult topic simply"
+                type="button"
+              >
+                <span class="prompt-symbol">↗</span
+                ><span>Understand a difficult topic</span
+                ><span class="prompt-detail"
+                  >Explain it in simple terms</span
+                ></button
+              ><button
+                class="prompt-card prompt-peach"
+                data-prompt="Help me write a thoughtful email"
+                type="button"
+              >
+                <span class="prompt-symbol">✳</span><span>Write an email</span
+                ><span class="prompt-detail"
+                  >Draft or improve a message</span
+                ></button
+              ><button
+                class="prompt-card prompt-blue"
+                data-prompt="Create a realistic study plan for me"
+                type="button"
+              >
+                <span class="prompt-symbol">▦</span
+                ><span>Make a study plan</span
+                ><span class="prompt-detail"
+                  >Build a schedule you can follow</span
+                ></button
+              ><button
+                class="prompt-card prompt-yellow"
+                data-prompt="Help me brainstorm some business ideas"
+                type="button"
+              >
+                <span class="prompt-symbol">✴</span
+                ><span>Explore business ideas</span
+                ><span class="prompt-detail">Brainstorm new opportunities</span>
+              </button>
+            </div>
+          </div>
+          <div class="message-list" id="message-list"></div>
+          <div
+            class="thinking-indicator"
+            id="thinking-indicator"
+            role="status"
+            aria-label="Morrow is thinking"
+            hidden
+          >
+            <span class="assistant-avatar" aria-hidden="true">m.</span
+            ><span class="thinking-dots"><i></i><i></i><i></i></span
+            ><span class="thinking-label">Writing a reply</span>
+          </div>
+        </section>
+        <footer class="composer-area">
+          <form class="composer" id="chat-form">
+            <label class="visually-hidden" for="message-input"
+              >Message Morrow</label
+            ><textarea
+              id="message-input"
+              rows="1"
+              placeholder="Type a message..."
+              maxlength="16000"
+              aria-describedby="composer-hint"
+            ></textarea>
+            <div class="composer-bottom">
+              <span class="composer-hint" id="composer-hint"
+                >Press <kbd>Ctrl ↵</kbd> to send</span
+              ><span
+                class="character-count"
+                id="character-count"
+                aria-label="0 of 16,000 characters"
+                >0 / 16,000</span
+              ><button
+                class="send-button"
+                id="send-button"
+                type="submit"
+                aria-label="Send message"
+                title="Send message"
+                disabled
+              >
+                <span class="send-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+          <p class="disclaimer">
+            AI can make mistakes. Verify important information.
+          </p>
+        </footer>
+      </main>
+    </div>
+
+    <dialog
+      class="settings-dialog"
+      id="settings-dialog"
+      aria-labelledby="settings-title"
+    >
+      <form method="dialog" class="settings-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="dialog-eyebrow">MAKE IT YOURS</p>
+            <h2 id="settings-title">Preferences</h2>
+          </div>
+          <button
+            class="icon-button dialog-close"
+            type="submit"
+            value="close"
+            aria-label="Close settings"
+            title="Close settings"
+          ></button>
+        </div>
+        <p class="dialog-intro">
+          A few small adjustments for a more comfortable conversation.
+        </p>
+        <div class="setting-row account-setting">
+          <div>
+            <label>Account</label>
+            <small id="account-description">Sign-in is optional.</small>
+          </div>
+          <button class="account-action" id="account-action" type="button">
+            Connect
+          </button>
+        </div>
+        <div class="setting-row">
+          <div>
+            <label for="theme-setting">Appearance</label
+            ><small>Choose a light or dark workspace</small>
+          </div>
+          <select id="theme-setting">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system">Use device setting</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <div>
+            <label for="language-setting">Reply language</label
+            ><small>Language Morrow responds in</small>
+          </div>
+          <select id="language-setting">
+            <option value="English">English</option>
+            <option value="Spanish">Español</option>
+            <option value="French">Français</option>
+            <option value="German">Deutsch</option>
+            <option value="Japanese">日本語</option>
+            <option value="Portuguese">Português</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <div>
+            <label for="style-setting">Response style</label
+            ><small>How detailed should replies feel?</small>
+          </div>
+          <select id="style-setting">
+            <option value="balanced">Balanced</option>
+            <option value="concise">Concise</option>
+            <option value="detailed">Detailed</option>
+          </select>
+        </div>
+        <div class="setting-row">
+          <div>
+            <label for="font-setting">Text size</label
+            ><small>Adjust the conversation text</small>
+          </div>
+          <select id="font-setting">
+            <option value="comfortable">Comfortable</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+        <div class="setting-row setting-toggle-row">
+          <div>
+            <label for="notifications-setting">Reply notifications</label
+            ><small>Notify when a reply is ready</small>
+          </div>
+          <label class="switch"
+            ><input id="notifications-setting" type="checkbox" /><span
+              class="switch-track"
+            ></span
+          ></label>
+        </div>
+        <div class="settings-privacy">
+          <span aria-hidden="true">▣</span>
+          <p>
+            Chats are saved only in this browser. Your messages are sent to the
+            configured AI provider to generate replies.
+          </p>
+        </div>
+        <div class="dialog-actions">
+          <button class="done-button" type="submit" value="save">Done</button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "morrow-local-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "openid-client": "^6.8.8"
+  }
+}
