@@ -1,24 +1,13 @@
 const onboardingKey = "morrow.onboarding.complete";
 const query = new URLSearchParams(location.search);
-const providers = {
-  google: document.getElementById("google-sign-in"),
-  microsoft: document.getElementById("microsoft-sign-in"),
-};
+const googleSignIn = document.getElementById("google-sign-in");
 const connectionStatus = document.getElementById("connection-status");
 const instructions = document.getElementById("setup-instructions");
 const authMessage = document.getElementById("auth-message");
 const signedInPanel = document.getElementById("signed-in-panel");
 const continueButton = document.getElementById("continue-button");
 
-if (
-  localStorage.getItem(onboardingKey) === "true" &&
-  !query.has("auth") &&
-  !query.has("manage")
-) {
-  location.replace("/chat");
-} else {
-  initializeOnboarding();
-}
+initializeOnboarding();
 
 async function initializeOnboarding() {
   continueButton.addEventListener("click", () => {
@@ -48,40 +37,36 @@ async function initializeOnboarding() {
     ]);
     const providerData = await providerResponse.json();
     const sessionData = await sessionResponse.json();
-    providers.google.disabled = !providerData.google;
-    providers.microsoft.disabled = !providerData.microsoft;
-    providers.google.addEventListener("click", () =>
+    googleSignIn.disabled = !providerData.google;
+    googleSignIn.addEventListener("click", () =>
       location.assign("/auth/google"),
-    );
-    providers.microsoft.addEventListener("click", () =>
-      location.assign("/auth/microsoft"),
     );
 
     document.getElementById("google-callback").textContent =
       `Google: ${providerData.callbacks.google}`;
-    document.getElementById("microsoft-callback").textContent =
-      `Microsoft: ${providerData.callbacks.microsoft}`;
 
-    const missing = [];
-    if (!providerData.google) missing.push("Google");
-    if (!providerData.microsoft) missing.push("Microsoft");
-    if (missing.length) {
+    if (!providerData.google) {
       instructions.hidden = false;
-      connectionStatus.textContent = `${missing.join(" and ")} sign-in ${missing.length === 1 ? "is" : "are"} not configured on this computer.`;
+      connectionStatus.textContent =
+        "Google sign-in is not configured on this computer.";
     } else {
       connectionStatus.classList.add("available");
-      connectionStatus.textContent = "Google and Microsoft sign-in are ready.";
+      connectionStatus.textContent = "Google sign-in is ready.";
     }
 
     if (sessionData.signedIn) {
+      if (authResult === "success") {
+        localStorage.setItem(onboardingKey, "true");
+        location.replace("/chat");
+        return;
+      }
       signedInPanel.hidden = false;
       document.getElementById("signed-in-label").textContent =
         `Signed in with ${sessionData.providerName} as ${sessionData.email}.`;
       continueButton.textContent = "Continue to Morrow";
     }
   } catch {
-    providers.google.disabled = true;
-    providers.microsoft.disabled = true;
+    googleSignIn.disabled = true;
     instructions.hidden = false;
     connectionStatus.textContent = "The local Morrow server is unavailable.";
   }

@@ -58,18 +58,6 @@
               <span>Continue with Google</span>
               <span class="provider-arrow" aria-hidden="true">&#8599;</span>
             </button>
-            <button
-              class="provider-button"
-              id="microsoft-sign-in"
-              type="button"
-              disabled
-            >
-              <span class="microsoft-mark" aria-hidden="true"
-                ><i></i><i></i><i></i><i></i
-              ></span>
-              <span>Continue with Microsoft</span>
-              <span class="provider-arrow" aria-hidden="true">&#8599;</span>
-            </button>
           </div>
 
           <p
@@ -87,9 +75,7 @@
             hidden
             aria-labelledby="setup-instructions-title"
           >
-            <h3 id="setup-instructions-title">
-              To enable Google or Microsoft sign-in
-            </h3>
+            <h3 id="setup-instructions-title">To enable Google sign-in</h3>
             <ol>
               <li>
                 Create an OAuth app with the provider and add its callback URL.
@@ -102,7 +88,6 @@
             </ol>
             <p class="callback-label">Callback URLs for this server</p>
             <code id="google-callback">Google: loading...</code>
-            <code id="microsoft-callback">Microsoft: loading...</code>
             <a
               class="setup-link"
               href="/README.md"
@@ -122,15 +107,15 @@
             Continue without signing in <span aria-hidden="true">&#8594;</span>
           </button>
           <p class="privacy-copy">
-            Google/Microsoft sign-in only confirms your identity. Your chat
-            history remains on this device and is not synced.
+            Google sign-in only confirms your identity. Your chat history
+            remains on this device and is not synced.
           </p>
 
           <div class="ai-setup-note">
             <span class="note-icon" aria-hidden="true">i</span>
             <p>
               <strong>One more setup for AI replies.</strong> Sign-in and AI
-              access are separate. To generate replies, add an OpenAI API key as
+              access are separate. To generate replies, add a Gemini API key as
               described in the setup guide.
             </p>
           </div>

@@ -88,7 +88,11 @@
             </div>
           </div>
           <div class="topbar-actions">
-            <div class="connection-status" id="connection-status" role="status">
+            <div
+              class="connection-status visually-hidden"
+              id="connection-status"
+              role="status"
+            >
               <span class="status-dot"></span
               ><span id="connection-label">Connecting</span>
             </div>
@@ -96,9 +100,12 @@
               class="icon-button more-button"
               id="chat-menu-toggle"
               type="button"
-              aria-label="Conversation actions"
-              title="Conversation actions"
-            ></button>
+              aria-label="Conversation menu"
+              title="Conversation menu"
+            >
+              <span class="menu-icon" aria-hidden="true"></span>
+              <span>Menu</span>
+            </button>
             <div class="chat-menu" id="chat-menu" hidden>
               <button type="button" id="rename-chat">
                 <span aria-hidden="true">✎</span>Rename conversation</button

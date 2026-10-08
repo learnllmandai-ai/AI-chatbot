@@ -417,7 +417,7 @@ async function send(text = el["message-input"].value.trim()) {
   if (!text || busy) return;
   if (!ready) {
     toast(
-      "Set OPENAI_API_KEY on this computer and restart Morrow to connect an AI model.",
+      "Set GEMINI_API_KEY on this computer and restart Morrow to connect Gemini.",
     );
     return;
   }
